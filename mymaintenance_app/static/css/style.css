@@ -1,0 +1,41 @@
+body{
+    height: 100vh;
+    width: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    background-color: gray;
+    flex-wrap: wrap;
+    
+}   
+
+.login-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width:60%;
+    height:60%;
+    border:  2px  outset gray
+}
+
+.login-header {
+    display: flex;
+    justify-content: center;
+    width:100%;
+
+    color: white;
+
+}
+
+.login {
+    text-align: center;
+}
+
+.box{
+    display: flex;
+    background-color: white;
+    width:60%;
+    height:60%;
+    border:  2px  outset gray
+}

@@ -3,8 +3,14 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-def home(request):
-    return render(request, 'home.html')
+def login(request):
+    return redirect('login')
+
+def index(request):
+  return render(request, 'index.html')
+
+def maintenance(request):
+  return render(request, 'maintenance.html')
 
 def signup(request):
   error_message = ''
@@ -17,7 +23,7 @@ def signup(request):
       user = form.save()
       # This is how we log a user in via code
       login(request, user)
-      return redirect('home')
+      return redirect('index')
     else:
       error_message = 'Invalid sign up - try again'
   # A bad POST or a GET request, so render signup.html with an empty form
