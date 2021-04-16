@@ -27,11 +27,39 @@ body{
     color: white;
 
 }
-
+.button {
+    text-align: center;
+}
 .login {
     text-align: center;
 }
-
+p {
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+margin-left: -20%;
+}
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 34%;
+    margin-right: 34%;
+}
+.signup {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.red-text {
+    color: red;
+    margin-left: 0%;
+}
+.signup-p {
+    margin-left: 0%;
+}
 .box{
     display: flex;
     background-color: white;

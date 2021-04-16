@@ -8,11 +8,16 @@
     
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
-    <h1 class="login">LOG IN</h1>
-      {{ form.as_p }}
-
-      <input class="btn btn-primary" type="submit" class="btn" value="login">
-      <input type="hidden" name="next" value="{{ next }}">
+    <h1 class="login">Resident Portal</h1><br>
+    <div class="form">
+      {{form}}
+    </div><br>
+      
+<div class="button">
+  <input  type="submit" class="btn btn-primary" value="login">
+  <input type="hidden" name="next" value="{{ next }}"><br><br>
+  <a href="{% url 'signup' %}">Create an account</a>
+</div>
     </form>
 
   </div>
