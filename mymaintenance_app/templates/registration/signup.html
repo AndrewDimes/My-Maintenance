@@ -1,22 +1,34 @@
 
-{% extends 'base.html' %}
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Maintenance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-{% block content %}
+    
 
 
 
+</head>
 
+<body class="container">
 <div class="login-box">
   <div >
     
-<h1 class="login">Create a New Account</h1>
+<h4 class="login">Create a New Account</h4>
 <div class="signup">
   {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
   <form method="post" action="{% url 'signup' %}">
     {% csrf_token %}
     {{ form }} <br>
-      <input type="submit" class="btn btn-primary" value="Create Account"><br><br>
+      <input type="submit" class="btn btn-primary" value="Create Account">
       <p class="signup-p" >Already have an account? <a href="{% url 'login' %}">Sign In</a></p>
     </form>
 </div>
@@ -25,4 +37,6 @@
 </div>
 
 
-{% endblock %}
+</body>
+
+</html>

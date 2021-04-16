@@ -14,8 +14,8 @@ body{
     justify-content: center;
     align-items: center;
     background-color: white;
-    width:60%;
-    height:60%;
+    width:70%;
+    height:70%;
     border:  2px  outset gray
 }
 
@@ -43,8 +43,7 @@ margin-left: -20%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    margin-left: 34%;
-    margin-right: 34%;
+
 }
 .signup {
     display: flex;
@@ -61,9 +60,18 @@ margin-left: -20%;
     margin-left: 0%;
 }
 .box{
-    display: flex;
+    
     background-color: white;
-    width:60%;
-    height:60%;
+    width:70%;
+    height:70%;
     border:  2px  outset gray
+}
+
+.navbar{
+   height:20%;
+}
+
+.workorder {
+    margin-left: 10%;
+    margin-right: 10%;
 }

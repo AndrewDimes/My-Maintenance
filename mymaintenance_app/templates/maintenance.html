@@ -3,22 +3,33 @@
 
 {% block content %}
 
-  
+         
+<br>
+<a href="{% url 'workorder_create' %} "class="waves-effect waves-light btn-large"><i class="material-icons right">build</i>Submit a work order</a>
 
 
-<div class="box">
-  <div >
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link" aria-current="page" href="{% url 'index' %}">Dashboard</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link active" href="{% url 'maintenance' %}">Maintenance</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-  </li>
-</ul>
-  </div>
-</div>
+
+ <table>
+        <thead>
+          <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Status</th>
+          </tr>
+        </thead>
+
+        <tbody>
+        {% for work in work_orders %}
+          <tr>
+            <td>{{work.title}}</td>
+            <td>{{work.description}}</td>
+            <td>{{work.get_status_display}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+
+
+
 {% endblock %}
