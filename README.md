@@ -17,10 +17,10 @@ My Maintenance is an app I am currently building to help apartments keep track o
 
 ### Technologies Used
 
--Django/Python
--HTML
--CSS
--Materialize
+- Django/Python
+- HTML
+- CSS
+- Materialize
 
 ### Future Features
 
