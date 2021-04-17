@@ -15,6 +15,13 @@ My Maintenance is an app I am currently building to help apartments keep track o
 ![Pins](mymaintenance_app/static/images/maintenance.png)
 
 
+### Technologies Used
+
+-Django/Python
+-HTML
+-CSS
+-Materialize
+
 ### Future Features
 
 This application is still in the early stages of devlopment but I hope to have a more responsive design and added features in the near future. Some features currently in the process of being implemented include:
