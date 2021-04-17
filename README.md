@@ -4,15 +4,15 @@ My Maintenance is an app I am currently building to help apartments keep track o
  
 
 ### Login
-![Pins](my_maintenance/static/images/login.png)
+![Pins](mymaintenance_app/static/images/login.png)
 
 ### Sign Up
-![Pins](my_maintenance/static/images/signup.png)
-![Pins](my_maintenance/static/images/profile.png)
+![Pins](mymaintenance_app/static/images/signup.png)
+![Pins](mymaintenance_app/static/images/profile.png)
 
 ### Work Order
-![Pins](my_maintenance/static/images/workorder.png)
-![Pins](my_maintenance/static/images/maintenance.png)
+![Pins](mymaintenance_app/static/images/workorder.png)
+![Pins](mymaintenance_app/static/images/maintenance.png)
 
 
 ### Future Features
