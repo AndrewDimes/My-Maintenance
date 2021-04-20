@@ -2,21 +2,45 @@
 
 {% block content %}
 
-    <div><br>
-<h1 class="login">Work Order</h1><br>
-<div class="workorder">
-  <form action="" method="post">
-    <!-- Django requires the following for security purposes -->
-    {% csrf_token %}
-    <table>
-      <!-- Render the inputs inside of <tr>s & <td>s -->
-      {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit!" class="btn btn-primary">
-  </form>
-</div>
-  </div>
 
+{% if request.user.is_superuser %}
+<div><br>
+  <h1 class="login">Work Order</h1><br>
+  <div class="workorder">
+    <form action="" method="post">
+      <!-- Django requires the following for security purposes -->
+      {% csrf_token %}
+        {{ form.as_table}} 
+        {% for value, text in form.fields.status.choices %}
+        <option value="{{ value }}">{{ text }}</option>
+        {% endfor %}
+      <input type="submit" value="Submit!" class="btn btn-primary">
+    </form>
+  
+  </div>
+    </div>
+{% else %}
+<div><br>
+  <h1 class="login">Work Order</h1><br>
+  <div class="workorder">
+    <form action="" method="post">
+      <!-- Django requires the following for security purposes -->
+      {% csrf_token %}
+      <table>
+        <!-- Render the inputs inside of <tr>s & <td>s -->
+        {{ form.as_table}}
+      </table>
+      <input type="submit" value="Submit!" class="btn btn-primary">
+    </form>
+  
+  </div>
+    </div>
+{%endif%}
+
+  <script>
+    var selectEl = document.getElementById('id_meal');
+    M.FormSelect.init(selectEl);
+  </script>
 {% endblock %}
 
 

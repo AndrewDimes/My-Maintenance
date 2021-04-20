@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if request.user.is_superuser %}
+    <form action="{% url 'workorder_update' work_order_id %}" method="post">
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" class="btn" value="Status">
+    </form>
+{%endif%}
+
+
+  <script>
+    var selectEl = document.getElementById('id_meal');
+    M.FormSelect.init(selectEl);
+  </script>
+{% endblock %}

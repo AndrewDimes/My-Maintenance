@@ -3,31 +3,51 @@
 
 {% block content %}
 
-         
+      
+{% if request.user.is_superuser %}
+<table>
+  <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  {% for work in work_orders_all %}
+   <tr> 
+    <td><a href="{%url 'workorder_update' work.id %}">{{work.title}}</a></td> 
+    <td>{{work.description}}</td>
+    <td>{{work.get_status_display}}</td>
+ </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{%else%}
 <br>
-<a href="{% url 'workorder_create' %} "class="waves-effect waves-light btn-large"><i class="material-icons right">build</i>Submit a work order</a>
+<a href="{% url 'workorder_create' %} "class="waves-effect waves-light btn-large"><i class="material-icons right">build</i>Submit Work Order</a>
+<table>
+  <thead>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+    </tr>
+  </thead>
 
+  <tbody>
+  {% for work in work_orders %}
+   <tr> 
+    <td><a href="{%url 'work_order_details' work.id %}">{{work.title}}</a></td> 
+    <td>{{work.description}}</td>
+    <td>{{work.get_status_display}}</td>
+ </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{%endif%}
 
-
- <table>
-        <thead>
-          <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Status</th>
-          </tr>
-        </thead>
-
-        <tbody>
-        {% for work in work_orders %}
-          <tr>
-            <td>{{work.title}}</td>
-            <td>{{work.description}}</td>
-            <td>{{work.get_status_display}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
 
 
 

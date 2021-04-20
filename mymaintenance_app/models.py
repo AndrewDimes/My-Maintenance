@@ -17,15 +17,22 @@ class WorkOrder(models.Model):
     description = models.TextField(max_length=400)
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(
-    max_length=1,
-    choices=STATUS,
-    default=STATUS[0][0]
+        max_length=1,
+        choices=STATUS,
+        default=STATUS[0][0]
   )
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('maintenance')
+        return reverse('work_order_details', kwargs={'work_order_id': self.id})
+
+class Photo(models.Model):
+    url = models.CharField(max_length=200)
+    work_order = models.ForeignKey(WorkOrder, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Photo for work_order: {self.work_order_id} @{self.url}"
 
 
 class Profile(models.Model):
@@ -33,12 +40,16 @@ class Profile(models.Model):
         full_name = models.CharField(max_length=100)
         phone = models.CharField(max_length=10)
         apartment = models.CharField(max_length=10)
+        email = models.CharField(max_length=100)
         work_orders = models.ManyToManyField(WorkOrder)
         def __str__(self):
             return self.full_name
 
         def get_absolute_url(self):
             return reverse('index')
+
+
+
 
 
 
