@@ -3,9 +3,25 @@
 
 {% block content %}
 
-
+{% if request.user.is_superuser %}
 <div class="row">
-    
+    <div class="col s4">
+        <h5>Quick Links</h5>
+        <a href="{% url 'maintenance' %}">View Work Orders</a><br>
+        <a href="{% url 'workorder_create' %}">Messages</a><br>
+        <h5>My Account</h5>
+        <a href="{% url 'profile_update' profile.id%}">Edit My Account</a><br>
+    </div>
+    <div class="col s8">
+      
+        <h5>Hello, <span style="color:red;">{{profile.full_name}}</span></h5>
+        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Completed Work Orders</a>
+        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Maintenance</a>
+        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Maintenance</a>
+    </div>
+  </div>
+{%else%}
+<div class="row">
     <div class="col s4">
         <h5>Quick Links</h5>
         <a href="{% url 'maintenance' %}">View Work Orders</a><br>
@@ -14,13 +30,14 @@
         <a href="{% url 'profile_update' profile.id%}">Edit My Account</a><br>
     </div>
     <div class="col s8">
+      
         <h5>Hello, <span style="color:red;">{{profile.full_name}}</span></h5>
         <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Make Payment</a>
-        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Contact Us</a>
-        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Your Documents</a>
+        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Contact Us</a><br><br>
+        <a class="waves-effect waves-light btn-large"><i class="material-icons right">cloud</i>Your Documents</a><br><br>
     </div>
   </div>
-
+  {%endif%}
 
 
 
