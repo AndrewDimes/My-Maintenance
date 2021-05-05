@@ -49,6 +49,16 @@ class Profile(models.Model):
             return reverse('index')
 
 
+class Comment(models.Model):
+    comment = models.CharField(max_length=300)
+    work_order = models.ForeignKey(WorkOrder, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return {self.comment}
+
+    
+
+
 
 
 

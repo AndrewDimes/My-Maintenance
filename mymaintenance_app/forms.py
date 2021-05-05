@@ -1,7 +1,7 @@
 from django.forms import ModelForm
-from .models import WorkOrder
+from .models import Comment
 
-class WorkOrderForm(ModelForm):
+class CommentForm(ModelForm):
   class Meta:
-    model = WorkOrder
-    fields = ['status']
+    model = Comment
+    fields = ['comment']

@@ -2,7 +2,56 @@
 
 
 {% block content %}
+      {% if request.user.is_superuser %}
+      {% for photo in work_order.photo_set.all %}
+      <img id="work_img" class="responsive-img card-panel" src="{{photo.url}}">
+    {% empty %}
+      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+    {% endfor %}
+    <table>
+      <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <tr>
+          <td>{{work_order.title}}</td>
+          <td>{{work_order.description}}</td>
+          {% if request.user.is_superuser %}
+          <td><a href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
+          {%else%}
+          <td>{{work_order.get_status_display}}</td>
+          {%endif%}
+          
+        </tr>
+      </tbody>
+    </table>
+    <table class="white">
+      <thead>
+        <tr>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for comment in work_order.comment_set.all %}
+        <tr>
+          <td>Maintenance - {{comment.comment}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+      <form  action="{% url 'add_comment' work_order.id %}" id="comment-form" class="white" method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <input type="submit" class="btn" value="Add Comment">
+    </form>
+
+    {% else %}
     {% for photo in work_order.photo_set.all %}
     <img id="work_img" class="responsive-img card-panel" src="{{photo.url}}">
   {% empty %}
@@ -29,10 +78,16 @@
           <tr>
             <td>{{work_order.title}}</td>
             <td>{{work_order.description}}</td>
+            {% if request.user.is_superuser %}
+            <td><a href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
+            {%else%}
             <td>{{work_order.get_status_display}}</td>
+            {%endif%}
+            
           </tr>
         </tbody>
       </table>
+    {% endif %}
             
             
             
