@@ -82,7 +82,12 @@ margin-left: -20%;
 }
 #comment-form{
     width:50%;
+    margin-left: 25%;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+#work-btn{
+    margin-top: 5%;
+    width:100%;
 }

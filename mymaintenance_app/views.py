@@ -31,22 +31,29 @@ def index(request):
     profile_query = Profile.objects.filter(user=request.user)
     profile = profile_query[0]
     print(profile)
+    work_orders = WorkOrder.objects.filter(user=request.user)
+    
+    
+
     return render(request, 'index.html', {'profile': profile})
 
 
 def maintenance(request):
     work_orders = WorkOrder.objects.filter(user=request.user)
     work_orders_all = WorkOrder.objects.all()
-    user_list = User.objects.all()
     page = request.GET.get('page', 1)
     paginator = Paginator(work_orders_all, 5)
+    paginator_two = Paginator(work_orders, 5)
     try:
       work = paginator.page(page)
+      work_resident = paginator_two.page(page)
     except PageNotAnInteger:
       work = paginator.page(1)
+      work_resident = paginator_two.page(1)
     except EmptyPage:
       work = paginator.page(paginator.num_pages)
-    return render(request, 'maintenance.html', {'work_orders': work_orders, 'work_orders_all': work_orders_all, 'work': work})
+      work_resident = paginator_two.page(paginator_two.num_pages)
+    return render(request, 'maintenance.html', {'work_orders': work_orders, 'work_orders_all': work_orders_all, 'work': work, 'work_resident': work_resident})
 
 
 def work_order_details(request, work_order_id):
