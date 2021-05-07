@@ -18,6 +18,15 @@ body{
     height:70%;
     border:  2px  outset gray
 }
+.signup-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width:70%;
+    height:70%;
+    border:  2px  outset gray
+}
 
 .login-header {
     display: flex;
@@ -51,10 +60,14 @@ margin-left: -20%;
     flex-direction: row;
     margin-left: 10%;
     margin-right: 10%;
+   
 }
 .red-text {
     color: red;
-    margin-left: 0%;
+    margin-left: 35%;
+    margin-top:-3%; 
+
+    text-align:center;
 }
 .signup-p {
     margin-left: 0%;

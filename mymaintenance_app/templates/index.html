@@ -8,13 +8,36 @@
     <div class="col s4">
         <h5>Quick Links</h5>
         <a href="{% url 'maintenance' %}">View Work Orders</a><br>
-        <a href="{% url 'workorder_create' %}">Messages</a><br>
+        <a href="">Messages</a><br>
         <h5>My Account</h5>
         <a href="{% url 'profile_update' profile.id%}">Edit My Account</a><br>
     </div>
     <div class="col s8">
       
         <h5><span style="color:red;">{{profile.full_name}}</span></h5>
+        <div class="col s12 m7">
+            <h6 class="header"> Work Order Summary </h6>
+            <div style="width:150%;" class="card">
+              <div class="card-image">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p >Submitted Work Orders -  <span style="color:red;"> {{all_sub_work}}</span></p>
+                </div>
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p>Open Work Orders -   <span style="color:red;"> {{all_open_work}}</span></p>
+                </div>
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p >Closed Work Orders -   <span style="color:red;"> {{all_closed_work}}</span></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
 
     </div>
   </div>
@@ -30,6 +53,29 @@
     <div class="col s8">
       
         <h5>Hello, <span style="color:red;">{{profile.full_name}}</span></h5>
+        <div class="col s12 m7">
+            <h6 class="header"> Apt: {{profile.apartment}} </h6>
+            <div style="width:150%;" class="card">
+              <div class="card-image">
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p >Submitted Work Orders -  <span style="color:red;"> {{sub_work}}</span></p>
+                </div>
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p>Open Work Orders -   <span style="color:red;"> {{open_work}}</span></p>
+                </div>
+              </div>
+              <div class="card-stacked">
+                <div class="card-content">
+                  <p >Closed Work Orders -   <span style="color:red;"> {{closed_work}}</span></p>
+                </div>
+
+              </div>
+            </div>
+          </div>
     </div>
   </div>
   {%endif%}

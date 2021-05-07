@@ -28,14 +28,31 @@ def home(request):
 
 
 def index(request):
+    open_work = 0
+    sub_work = 0
+    closed_work = 0
+    all_open_work = 0
+    all_sub_work = 0
+    all_closed_work = 0
     profile_query = Profile.objects.filter(user=request.user)
     profile = profile_query[0]
-    print(profile)
     work_orders = WorkOrder.objects.filter(user=request.user)
-    
-    
-
-    return render(request, 'index.html', {'profile': profile})
+    work_orders_all = WorkOrder.objects.all()
+    for work in work_orders:
+        if work.status == 'S':
+            sub_work = sub_work + 1
+        elif work.status == 'O':
+            open_work = open_work + 1
+        elif work.status == 'C':
+            closed_work == closed_work + 1
+    for work in work_orders_all:
+        if work.status == 'S':
+            all_sub_work = all_sub_work + 1
+        elif work.status == 'O':
+            all_open_work = all_open_work + 1
+        elif work.status == 'C':
+            all_closed_work == all_closed_work + 1
+    return render(request, 'index.html', {'profile': profile, 'sub_work': sub_work, 'open_work': open_work, 'closed_work': closed_work, 'all_sub_work': all_sub_work, 'all_open_work': all_open_work, 'all_closed_work': all_closed_work})
 
 
 def maintenance(request):
