@@ -1,1 +1,1 @@
-web: gunicorn mymaintenance_app.wsgi
+web: gunicorn mymaintenance.wsgi
