@@ -122,3 +122,6 @@ mimetypes.add_type("text/css", ".css", True)
 STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = '/'
+
+import django_on_heroku
+django_on_heroku.settings(locals())
