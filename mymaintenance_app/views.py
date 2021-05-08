@@ -44,14 +44,14 @@ def index(request):
         elif work.status == 'O':
             open_work = open_work + 1
         elif work.status == 'C':
-            closed_work == closed_work + 1
+            closed_work = closed_work + 1
     for work in work_orders_all:
         if work.status == 'S':
             all_sub_work = all_sub_work + 1
         elif work.status == 'O':
             all_open_work = all_open_work + 1
         elif work.status == 'C':
-            all_closed_work == all_closed_work + 1
+            all_closed_work = all_closed_work + 1
     return render(request, 'index.html', {'profile': profile, 'sub_work': sub_work, 'open_work': open_work, 'closed_work': closed_work, 'all_sub_work': all_sub_work, 'all_open_work': all_open_work, 'all_closed_work': all_closed_work})
 
 
@@ -195,8 +195,6 @@ def workorder_status(request, work_order_id):
 def signup(request):
     error_message = ''
     if request.method == 'POST':
-        # This is how to create a 'user' form object
-        # that includes the data from the browser
         form = UserCreationForm(request.POST)
         if form.is_valid():
             # This will add the user to the database
