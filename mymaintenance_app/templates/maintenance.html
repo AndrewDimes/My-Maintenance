@@ -5,6 +5,16 @@
 
 
 {% if request.user.is_superuser %}
+<br>
+<div style="text-align: center;">
+  <a href="{%url 'maintenance' %}" style="text-align: left;" class="waves-effect waves-light btn">Submitted</a>
+  <a href="{%url 'open_maintenance' %}" style="text-align: center;" class="waves-effect waves-light btn">Open</a>
+  <a href="{%url 'closed_maintenance' %}" style="text-align: rightt;" class="waves-effect waves-light btn">Closed</a>
+</div>
+ 
+
+
+<h5>New Work Orders</h5>
 <table>
   <thead>
     <tr>
@@ -16,13 +26,11 @@
 
   <tbody>
   {% for work in work %}
-  {% if work.get_status_display != 'Complete' %}
    <tr> 
     <td><a href="{%url 'work_order_details' work.id %}">{{work.title}}</a></td> 
     <td>{{work.description}}</td>
     <td>{{work.get_status_display}}</td>
  </tr>
- {% endif %}
     {% endfor %}
   </tbody>
 </table>
@@ -50,8 +58,13 @@
       
 {%else%}
 <a id="work-btn" href="{% url 'workorder_create' %} "class="waves-effect waves-light btn-large"><i class="material-icons right">build</i>Submit Work Order</a>
-
 <br>
+<br>
+<div style="text-align: center;">
+  <a href="{%url 'maintenance' %}" style="text-align: left;" class="waves-effect waves-light btn">Submitted</a>
+  <a href="{%url 'open_maintenance' %}" style="text-align: center;" class="waves-effect waves-light btn">Open</a>
+  <a href="{%url 'closed_maintenance' %}" style="text-align: rightt;" class="waves-effect waves-light btn">Closed</a>
+</div>
 <table>
   <thead>
     <tr>
@@ -63,13 +76,11 @@
 
   <tbody>
   {% for work in work_resident %}
-  {% if work.get_status_display != 'Complete' %}
    <tr> 
     <td><a href="{%url 'work_order_details' work.id %}">{{work.title}}</a></td> 
     <td>{{work.description}}</td>
     <td>{{work.get_status_display}}</td>
  </tr>
- {% endif %}
     {% endfor %}
   </tbody>
 </table>

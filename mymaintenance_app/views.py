@@ -56,11 +56,34 @@ def index(request):
 
 
 def maintenance(request):
+    open_work = []
+    sub_work = []
+    closed_work = []
+    super_open_work = []
+    super_sub_work = []
+    super_closed_work = []
     work_orders = WorkOrder.objects.filter(user=request.user)
+    for work in work_orders:
+        print(work.status)
+        if(work.status == 'O'):
+            open_work.append(work)   
+        elif(work.status == 'S'):
+            sub_work.append(work)
+        elif(work.status == 'C'):
+            closed_work.append(work)
     work_orders_all = WorkOrder.objects.all()
+    for work in work_orders_all:
+        print(work.status)
+        if(work.status == 'O'):
+            super_open_work.append(work)   
+        elif(work.status == 'S'):
+            super_sub_work.append(work)
+        elif(work.status == 'C'):
+            super_closed_work.append(work)
+    print()
     page = request.GET.get('page', 1)
-    paginator = Paginator(work_orders_all, 5)
-    paginator_two = Paginator(work_orders, 5)
+    paginator = Paginator(super_sub_work, 5)
+    paginator_two = Paginator(sub_work, 4)
     try:
       work = paginator.page(page)
       work_resident = paginator_two.page(page)
@@ -70,8 +93,99 @@ def maintenance(request):
     except EmptyPage:
       work = paginator.page(paginator.num_pages)
       work_resident = paginator_two.page(paginator_two.num_pages)
-    return render(request, 'maintenance.html', {'work_orders': work_orders, 'work_orders_all': work_orders_all, 'work': work, 'work_resident': work_resident})
+    return render(request, 'maintenance.html', 
+    {'work_orders': work_orders, 'work_orders_all': work_orders_all, 
+    'work': work, 'work_resident': work_resident, 'open_work':open_work, 'sub_work':sub_work,
+    'closed_work':closed_work, 'super_open_work':super_open_work, 'super_sub_work':super_sub_work,
+    'super_closed_work': super_closed_work})
 
+def open_maintenance(request):
+    open_work = []
+    sub_work = []
+    closed_work = []
+    super_open_work = []
+    super_sub_work = []
+    super_closed_work = []
+    work_orders = WorkOrder.objects.filter(user=request.user)
+    for work in work_orders:
+        print(work.status)
+        if(work.status == 'O'):
+            open_work.append(work)   
+        elif(work.status == 'S'):
+            sub_work.append(work)
+        elif(work.status == 'C'):
+            closed_work.append(work)
+    work_orders_all = WorkOrder.objects.all()
+    for work in work_orders_all:
+        print(work.status)
+        if(work.status == 'O'):
+            super_open_work.append(work)   
+        elif(work.status == 'S'):
+            super_sub_work.append(work)
+        elif(work.status == 'C'):
+            super_closed_work.append(work)
+    print()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(super_open_work, 5)
+    paginator_two = Paginator(open_work, 4)
+    try:
+      work = paginator.page(page)
+      work_resident = paginator_two.page(page)
+    except PageNotAnInteger:
+      work = paginator.page(1)
+      work_resident = paginator_two.page(1)
+    except EmptyPage:
+      work = paginator.page(paginator.num_pages)
+      work_resident = paginator_two.page(paginator_two.num_pages)
+    return render(request, 'maintenance.html', 
+    {'work_orders': work_orders, 'work_orders_all': work_orders_all, 
+    'work': work, 'work_resident': work_resident, 'open_work':open_work, 'sub_work':sub_work,
+    'closed_work':closed_work, 'super_open_work':super_open_work, 'super_sub_work':super_sub_work,
+    'super_closed_work': super_closed_work})
+
+def closed_maintenance(request):
+    open_work = []
+    sub_work = []
+    closed_work = []
+    super_open_work = []
+    super_sub_work = []
+    super_closed_work = []
+    work_orders = WorkOrder.objects.filter(user=request.user)
+    for work in work_orders:
+        print(work.status)
+        if(work.status == 'O'):
+            open_work.append(work)   
+        elif(work.status == 'S'):
+            sub_work.append(work)
+        elif(work.status == 'C'):
+            closed_work.append(work)
+    work_orders_all = WorkOrder.objects.all()
+    for work in work_orders_all:
+        print(work.status)
+        if(work.status == 'O'):
+            super_open_work.append(work)   
+        elif(work.status == 'S'):
+            super_sub_work.append(work)
+        elif(work.status == 'C'):
+            super_closed_work.append(work)
+    print()
+    page = request.GET.get('page', 1)
+    paginator = Paginator(super_closed_work, 5)
+    paginator_two = Paginator(closed_work, 4)
+    try:
+      work = paginator.page(page)
+      work_resident = paginator_two.page(page)
+    except PageNotAnInteger:
+      work = paginator.page(1)
+      work_resident = paginator_two.page(1)
+    except EmptyPage:
+      work = paginator.page(paginator.num_pages)
+      work_resident = paginator_two.page(paginator_two.num_pages)
+    return render(request, 'maintenance.html', 
+    {'work_orders': work_orders, 'work_orders_all': work_orders_all, 
+    'work': work, 'work_resident': work_resident, 'open_work':open_work, 'sub_work':sub_work,
+    'closed_work':closed_work, 'super_open_work':super_open_work, 'super_sub_work':super_sub_work,
+    'super_closed_work': super_closed_work})
 
 def work_order_details(request, work_order_id):
     work_order = WorkOrder.objects.get(id=work_order_id)
