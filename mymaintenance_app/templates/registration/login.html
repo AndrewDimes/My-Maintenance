@@ -18,10 +18,17 @@
 </head>
 
 <body class="container">
-
+  <div style="margin-bottom: -10%;"class="row">
+    <div style="width:100%;" class="col s12 m5">
+      <div class="card-panel teal">
+        <span class="white-text">FOR TESTING PURPOSES<br> Resident Account<br> Username: <b>Tester</b> Password: <b>Ii@pass31</b><br>
+          Maintenance Account<br> Username: <b>Maintenance</b> Password: <b>Ii@pass31</b></span>
+      </div>
+    </div>
+  </div>
 <div class="login-box">
+
   <div >
-    
     <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
     <h1 class="login">Resident Portal</h1><br>
