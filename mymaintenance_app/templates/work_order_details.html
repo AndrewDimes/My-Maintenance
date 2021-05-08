@@ -3,6 +3,14 @@
 
 {% block content %}
       {% if request.user.is_superuser %}
+      <div class="row">
+        <div style="width:100%; text-align:center;" class="col s12 m5">
+          <div class="card-panel teal">
+            <span class="white-text">Resident Information - {{profile.full_name}} | Apt: {{profile.apartment}} | {{profile.email}}
+            </span>
+          </div>
+        </div>
+      </div>
       {% for photo in work_order.photo_set.all %}
       <img id="work_img" class="responsive-img card-panel" src="{{photo.url}}">
     {% empty %}

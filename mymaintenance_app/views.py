@@ -67,8 +67,8 @@ def maintenance(request):
         if(work.status == 'S'):
             super_sub_work.append(work)
     page = request.GET.get('page', 1)
-    paginator = Paginator(super_sub_work, 5)
-    paginator_two = Paginator(sub_work, 4)
+    paginator = Paginator(super_sub_work, 6)
+    paginator_two = Paginator(sub_work, 5)
     try:
       work = paginator.page(page)
       work_resident = paginator_two.page(page)
@@ -93,8 +93,8 @@ def open_maintenance(request):
         if(work.status == 'O'):
             super_open_work.append(work)   
     page = request.GET.get('page', 1)
-    paginator = Paginator(super_open_work, 5)
-    paginator_two = Paginator(open_work, 4)
+    paginator = Paginator(super_open_work, 6)
+    paginator_two = Paginator(open_work, 5)
     try:
       work = paginator.page(page)
       work_resident = paginator_two.page(page)
@@ -119,8 +119,8 @@ def closed_maintenance(request):
         if(work.status == 'C'):
             super_closed_work.append(work)
     page = request.GET.get('page', 1)
-    paginator = Paginator(super_closed_work, 5)
-    paginator_two = Paginator(closed_work, 4)
+    paginator = Paginator(super_closed_work, 6)
+    paginator_two = Paginator(closed_work, 5)
     try:
       work = paginator.page(page)
       work_resident = paginator_two.page(page)
@@ -135,10 +135,13 @@ def closed_maintenance(request):
 
 def work_order_details(request, work_order_id):
     work_order = WorkOrder.objects.get(id=work_order_id)
+    profile = Profile.objects.get(user=work_order.user)
+    
     comment_form = CommentForm()
     return render(request, 'work_order_details.html', {
         'work_order': work_order,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'profile': profile
     })
 
 def add_comment(request, work_order_id):
