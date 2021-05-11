@@ -38,20 +38,17 @@
         </tr>
       </tbody>
     </table>
-    <table class="white">
-      <thead>
-        <tr>
-          <th>Comments</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for comment in work_order.comment_set.all %}
-        <tr>
-          <td>Maintenance - {{comment.comment}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+    <div>
+      <table class="white">
+        <tbody>
+          {% for comment in work_order.comment_set.all %}
+          <tr>
+            <td><b style="color:cadetblue">Maintenance</b> - {{comment.comment}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
 
       <form  action="{% url 'add_comment' work_order.id %}" id="comment-form" class="white" method="post">
         {% csrf_token %}
@@ -93,6 +90,20 @@
             {%endif%}
             
           </tr>
+        </tbody>
+      </table>
+      <table  class="white">
+        <thead>
+          <tr>
+            <th>Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for comment in work_order.comment_set.all %}
+          <tr>
+            <td><b style="color:cadetblue">Maintenance</b> - {{comment.comment}}</td>
+          </tr>
+          {% endfor %}
         </tbody>
       </table>
     {% endif %}
