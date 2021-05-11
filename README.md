@@ -8,11 +8,13 @@ My Maintenance is an app to help apartments keep track of repairs needed by resi
 
 ### Sign Up
 ![Pins](mymaintenance_app/static/images/signup.png)
-![Pins](mymaintenance_app/static/images/profile.png)
+
+### Dashboard
+![Pins](mymaintenance_app/static/images/dashboard.png)
 
 ### Work Order
-![Pins](mymaintenance_app/static/images/workorder.png)
-![Pins](mymaintenance_app/static/images/maintenance.png)
+![Pins](mymaintenance_app/static/images/workorder1.png)
+![Pins](mymaintenance_app/static/images/maintenance1.png)
 
 
 ### Technologies Used
