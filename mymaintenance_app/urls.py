@@ -9,7 +9,6 @@ urlpatterns = [
     path('maintenance/', views.maintenance, name='maintenance'),
     path('maintenance/open', views.open_maintenance, name='open_maintenance'),
     path('maintenance/closed', views.closed_maintenance, name='closed_maintenance'),
-    path('profile/', views.profile, name='profile'),
     path('profile/create/', views.ProfileCreate.as_view(), name='profile_create'),
     path('profile/<int:pk>/update/', views.ProfileUpdate.as_view(), name="profile_update"),
     path('workorders/create/', views.WorkOrderCreate.as_view(), name='workorder_create'),

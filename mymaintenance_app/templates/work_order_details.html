@@ -30,7 +30,7 @@
           <td>{{work_order.title}}</td>
           <td>{{work_order.description}}</td>
           {% if request.user.is_superuser %}
-          <td><a href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
+          <td><a class="waves-effect waves-teal btn-flat" href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
           {%else%}
           <td>{{work_order.get_status_display}}</td>
           {%endif%}

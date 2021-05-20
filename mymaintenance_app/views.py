@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView
 from .models import WorkOrder, Profile, Photo
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 from .forms import CommentForm
 
 # for def
@@ -26,7 +27,7 @@ def home(request):
     else:
         return redirect('login')
 
-
+@login_required
 def index(request):
     open_work = 0
     sub_work = 0
@@ -54,7 +55,7 @@ def index(request):
             all_closed_work = all_closed_work + 1
     return render(request, 'index.html', {'profile': profile, 'sub_work': sub_work, 'open_work': open_work, 'closed_work': closed_work, 'all_sub_work': all_sub_work, 'all_open_work': all_open_work, 'all_closed_work': all_closed_work})
 
-
+@login_required
 def maintenance(request):
     sub_work = []
     super_sub_work = []
@@ -81,6 +82,7 @@ def maintenance(request):
     return render(request, 'maintenance.html', 
     {'work': work, 'work_resident': work_resident})
 
+@login_required
 def open_maintenance(request):
     open_work = []
     super_open_work = []
@@ -106,7 +108,7 @@ def open_maintenance(request):
       work_resident = paginator_two.page(paginator_two.num_pages)
     return render(request, 'maintenance.html', 
     { 'work': work, 'work_resident': work_resident })
-
+@login_required
 def closed_maintenance(request):
     closed_work = []
     super_closed_work = []
@@ -132,7 +134,7 @@ def closed_maintenance(request):
       work_resident = paginator_two.page(paginator_two.num_pages)
     return render(request, 'maintenance.html', 
     {'work': work, 'work_resident': work_resident})
-
+@login_required
 def work_order_details(request, work_order_id):
     work_order = WorkOrder.objects.get(id=work_order_id)
     profile = Profile.objects.get(user=work_order.user)
@@ -143,7 +145,7 @@ def work_order_details(request, work_order_id):
         'comment_form': comment_form,
         'profile': profile
     })
-
+@login_required
 def add_comment(request, work_order_id):
   form = CommentForm(request.POST)
   if form.is_valid():
@@ -152,9 +154,6 @@ def add_comment(request, work_order_id):
     new_comment.save()
   return redirect('work_order_details', work_order_id=work_order_id)
 
-
-def profile(request):
-    return render(request, 'profile.html')
 
 
 class ProfileCreate(LoginRequiredMixin, CreateView):
@@ -181,7 +180,7 @@ class WorkOrderCreate(LoginRequiredMixin, CreateView):
 
         return super().form_valid(form)
 
-
+@login_required
 def workorder_status(request, work_order_id):
     work_order = WorkOrder.objects.get(id=work_order_id)
     if work_order.status == 'O':
@@ -212,7 +211,7 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
-
+@login_required
 def add_photo(request, work_order_id):
      # photo-file will be the "name" attribute on the <input type="file">
 
