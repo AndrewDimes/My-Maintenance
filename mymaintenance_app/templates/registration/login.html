@@ -1,50 +1,46 @@
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Maintenance</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
-    
-
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Maintenance</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body class="container">
-  <div style="margin-bottom: -5%;"class="row">
+  <div style="margin-bottom: -5%;" class="row">
     <div style="width:100%;" class="col s12 m5">
       <div class="card-panel teal">
-        <span class="black-text">For testing purposes.<br> Resident Account:<br> Username: <b>Tester</b> Password: <b>Ii@pass31</b><br>
+        <span class="black-text">For testing purposes.<br> Resident Account:<br> Username: <b>Tester</b> Password:
+          <b>Ii@pass31</b><br>
           Maintenance Account:<br> Username: <b>Maintenance</b> Password: <b>Li@pass31</b></span>
       </div>
     </div>
   </div>
-<div class="login-box">
+  <div class="login-box">
 
-  <div >
-    <form method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-    <h1 class="login">Resident Portal</h1><br>
-    <div class="form">
-      {{form}}
-    </div><br>
-      
-<div class="button">
-  <input  type="submit" class="btn btn-primary" value="login">
-  <input type="hidden" name="next" value="{{ next }}"><br><br>
-  <a href="{% url 'signup' %}">Create an account</a>
-</div>
-    </form>
+    <div>
+      <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <h1 class="login">Resident Portal</h1><br>
+        <div class="form">
+          {{form}}
+        </div><br>
 
+        <div class="button">
+          <input type="submit" class="btn btn-primary" value="login">
+          <input type="hidden" name="next" value="{{ next }}"><br><br>
+          <a href="{% url 'signup' %}">Create an account</a>
+        </div>
+      </form>
+
+    </div>
   </div>
-</div>
 
 </body>
 

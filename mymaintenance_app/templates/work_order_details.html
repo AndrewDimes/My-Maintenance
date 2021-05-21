@@ -2,112 +2,112 @@
 
 
 {% block content %}
-      {% if request.user.is_superuser %}
-      <div class="row">
-        <div style="width:100%; text-align:center;" class="col s12 m5">
-          <div class="card-panel teal">
-            <span class="white-text">Resident Information - {{profile.full_name}} | Apt: {{profile.apartment}} | {{profile.email}}
-            </span>
-          </div>
-        </div>
-      </div>
-      {% for photo in work_order.photo_set.all %}
-      <img id="work_img" class="responsive-img card-panel" src="{{photo.url}}">
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
-    <table>
-      <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr>
-          <td>{{work_order.title}}</td>
-          <td>{{work_order.description}}</td>
-          {% if request.user.is_superuser %}
-          <td><a class="waves-effect waves-teal btn-flat" href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
-          {%else%}
-          <td>{{work_order.get_status_display}}</td>
-          {%endif%}
-          
-        </tr>
-      </tbody>
-    </table>
-    <div>
-      <table class="white">
-        <tbody>
-          {% for comment in work_order.comment_set.all %}
-          <tr>
-            <td><b style="color:cadetblue">Maintenance</b> - {{comment.comment}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+{% if request.user.is_superuser %}
+<div class="row">
+  <div style="width:100%; text-align:center;" class="col s12 m5">
+    <div class="card-panel teal">
+      <span class="white-text">Resident Information - {{profile.full_name}} | Apt: {{profile.apartment}} |
+        {{profile.email}}
+      </span>
     </div>
+  </div>
+</div>
+{% for photo in work_order.photo_set.all %}
+<img id="work_img" class="responsive-img card-panel" src="{{photo.url}}">
+{% empty %}
+<div class="card-panel teal-text center-align">No Photos Uploaded</div>
+{% endfor %}
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{work_order.title}}</td>
+      <td>{{work_order.description}}</td>
+      {% if request.user.is_superuser %}
+      <td><a class="waves-effect waves-teal btn-flat"
+          href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
+      {%else%}
+      <td>{{work_order.get_status_display}}</td>
+      {%endif%}
+    </tr>
+  </tbody>
+</table>
+<div>
+  <table class="white">
+    <tbody>
+      {% for comment in work_order.comment_set.all %}
+      <tr>
+        <td><b style="color:cadetblue">Maintenance</b> - {{comment.comment}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
-      <form  action="{% url 'add_comment' work_order.id %}" id="comment-form" class="white" method="post">
-        {% csrf_token %}
-        {{ comment_form.as_p }}
-        <input type="submit" class="btn" value="Add Comment">
-    </form>
-
-    {% else %}
-    {% for photo in work_order.photo_set.all %}
-    <img id="work_img" class="responsive-img card-panel" src="{{photo.url}}">
-  {% empty %}
-    <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-  {% endfor %}
-
-  <form action="{% url 'add_photo' work_order.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-    {% csrf_token %}
-    <input type="file" name="photo-file">
-    <br><br>
-    <input type="submit" class="btn" value="Upload Photo">
+<form action="{% url 'add_comment' work_order.id %}" id="comment-form" class="white" method="post">
+  {% csrf_token %}
+  {{ comment_form.as_p }}
+  <input type="submit" class="btn" value="Add Comment">
 </form>
 
-     <table>
-        <thead>
-          <tr>
-              <th></th>
-              <th></th>
-              <th></th>
-          </tr>
-        </thead>
+{% else %}
+{% for photo in work_order.photo_set.all %}
+<img id="work_img" class="responsive-img card-panel" src="{{photo.url}}">
+{% empty %}
+<div class="card-panel teal-text center-align">No Photos Uploaded</div>
+{% endfor %}
 
-        <tbody>
-          <tr>
-            <td>{{work_order.title}}</td>
-            <td>{{work_order.description}}</td>
-            {% if request.user.is_superuser %}
-            <td><a href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
-            {%else%}
-            <td>{{work_order.get_status_display}}</td>
-            {%endif%}
-            
-          </tr>
-        </tbody>
-      </table>
-      <table  class="white">
-        <thead>
-          <tr>
-            <th>Comments</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for comment in work_order.comment_set.all %}
-          <tr>
-            <td><b style="color:cadetblue">Maintenance</b> - {{comment.comment}}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% endif %}
-            
-            
-            
+<form action="{% url 'add_photo' work_order.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+  {% csrf_token %}
+  <input type="file" name="photo-file">
+  <br><br>
+  <input type="submit" class="btn" value="Upload Photo">
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>{{work_order.title}}</td>
+      <td>{{work_order.description}}</td>
+      {% if request.user.is_superuser %}
+      <td><a href="{% url 'status' work_order.id %}">{{work_order.get_status_display}}</a></td>
+      {%else%}
+      <td>{{work_order.get_status_display}}</td>
+      {%endif%}
+
+    </tr>
+  </tbody>
+</table>
+<table class="white">
+  <thead>
+    <tr>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for comment in work_order.comment_set.all %}
+    <tr>
+      <td><b style="color:cadetblue">Maintenance</b> - {{comment.comment}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+
+
 {% endblock %}

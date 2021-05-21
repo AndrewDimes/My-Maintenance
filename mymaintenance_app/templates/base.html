@@ -1,47 +1,48 @@
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Maintenance</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Maintenance</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 
-    
+
 
 
 
 </head>
 
 <body class="container">
-    <div class="box">
-        <nav>
-            <div class="nav-wrapper #009688 teal">
-              <ul class="left">
-                <li><a href="{% url 'index' %}">Dashboard</a></li>
-                <li><a href="{% url 'maintenance' %}">Maintenance</a></li>
-              </ul>
-              <ul class="right">
-                <li><a href="{% url 'logout' %}">Logout</a></li>
-              </ul>
-            </div>
-          </nav>
-  
-   
+  <div class="box">
+    <nav>
+      <div class="nav-wrapper #009688 teal">
+        <ul class="left">
+          <li><a href="{% url 'index' %}">Dashboard</a></li>
+          <li><a href="{% url 'maintenance' %}">Maintenance</a></li>
+        </ul>
+        <ul class="right">
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
     {%block content %}
     {%endblock%}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var elems = document.querySelectorAll('.sidenav');
-            var instances = M.Sidenav.init(elems, options);
-          });
+      document.addEventListener('DOMContentLoaded', function () {
+        var elems = document.querySelectorAll('.sidenav');
+        var instances = M.Sidenav.init(elems, options);
+      });
     </script>
 
 </body>

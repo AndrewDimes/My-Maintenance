@@ -27,6 +27,7 @@ def home(request):
     else:
         return redirect('login')
 
+
 @login_required
 def index(request):
     open_work = 0
@@ -55,6 +56,7 @@ def index(request):
             all_closed_work = all_closed_work + 1
     return render(request, 'index.html', {'profile': profile, 'sub_work': sub_work, 'open_work': open_work, 'closed_work': closed_work, 'all_sub_work': all_sub_work, 'all_open_work': all_open_work, 'all_closed_work': all_closed_work})
 
+
 @login_required
 def maintenance(request):
     sub_work = []
@@ -71,16 +73,17 @@ def maintenance(request):
     paginator = Paginator(super_sub_work, 6)
     paginator_two = Paginator(sub_work, 5)
     try:
-      work = paginator.page(page)
-      work_resident = paginator_two.page(page)
+        work = paginator.page(page)
+        work_resident = paginator_two.page(page)
     except PageNotAnInteger:
-      work = paginator.page(1)
-      work_resident = paginator_two.page(1)
+        work = paginator.page(1)
+        work_resident = paginator_two.page(1)
     except EmptyPage:
-      work = paginator.page(paginator.num_pages)
-      work_resident = paginator_two.page(paginator_two.num_pages)
-    return render(request, 'maintenance.html', 
-    {'work': work, 'work_resident': work_resident})
+        work = paginator.page(paginator.num_pages)
+        work_resident = paginator_two.page(paginator_two.num_pages)
+    return render(request, 'maintenance.html',
+                  {'work': work, 'work_resident': work_resident})
+
 
 @login_required
 def open_maintenance(request):
@@ -89,25 +92,27 @@ def open_maintenance(request):
     work_orders = WorkOrder.objects.filter(user=request.user)
     for work in work_orders:
         if(work.status == 'O'):
-            open_work.append(work)   
+            open_work.append(work)
     work_orders_all = WorkOrder.objects.all()
     for work in work_orders_all:
         if(work.status == 'O'):
-            super_open_work.append(work)   
+            super_open_work.append(work)
     page = request.GET.get('page', 1)
     paginator = Paginator(super_open_work, 6)
     paginator_two = Paginator(open_work, 5)
     try:
-      work = paginator.page(page)
-      work_resident = paginator_two.page(page)
+        work = paginator.page(page)
+        work_resident = paginator_two.page(page)
     except PageNotAnInteger:
-      work = paginator.page(1)
-      work_resident = paginator_two.page(1)
+        work = paginator.page(1)
+        work_resident = paginator_two.page(1)
     except EmptyPage:
-      work = paginator.page(paginator.num_pages)
-      work_resident = paginator_two.page(paginator_two.num_pages)
-    return render(request, 'maintenance.html', 
-    { 'work': work, 'work_resident': work_resident })
+        work = paginator.page(paginator.num_pages)
+        work_resident = paginator_two.page(paginator_two.num_pages)
+    return render(request, 'maintenance.html',
+                  {'work': work, 'work_resident': work_resident})
+
+
 @login_required
 def closed_maintenance(request):
     closed_work = []
@@ -124,45 +129,45 @@ def closed_maintenance(request):
     paginator = Paginator(super_closed_work, 6)
     paginator_two = Paginator(closed_work, 5)
     try:
-      work = paginator.page(page)
-      work_resident = paginator_two.page(page)
+        work = paginator.page(page)
+        work_resident = paginator_two.page(page)
     except PageNotAnInteger:
-      work = paginator.page(1)
-      work_resident = paginator_two.page(1)
+        work = paginator.page(1)
+        work_resident = paginator_two.page(1)
     except EmptyPage:
-      work = paginator.page(paginator.num_pages)
-      work_resident = paginator_two.page(paginator_two.num_pages)
-    return render(request, 'maintenance.html', 
-    {'work': work, 'work_resident': work_resident})
+        work = paginator.page(paginator.num_pages)
+        work_resident = paginator_two.page(paginator_two.num_pages)
+    return render(request, 'maintenance.html',
+                  {'work': work, 'work_resident': work_resident})
+
+
 @login_required
 def work_order_details(request, work_order_id):
     work_order = WorkOrder.objects.get(id=work_order_id)
     profile = Profile.objects.get(user=work_order.user)
-    
     comment_form = CommentForm()
     return render(request, 'work_order_details.html', {
         'work_order': work_order,
         'comment_form': comment_form,
         'profile': profile
     })
+
+
 @login_required
 def add_comment(request, work_order_id):
-  form = CommentForm(request.POST)
-  if form.is_valid():
-    new_comment = form.save(commit=False)
-    new_comment.work_order_id = work_order_id
-    new_comment.save()
-  return redirect('work_order_details', work_order_id=work_order_id)
-
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        new_comment.work_order_id = work_order_id
+        new_comment.save()
+    return redirect('work_order_details', work_order_id=work_order_id)
 
 
 class ProfileCreate(LoginRequiredMixin, CreateView):
     model = Profile
     fields = ['full_name', 'phone', 'apartment', 'email']
-
     def form_valid(self, form):
         form.instance.user = self.request.user
-
         return super().form_valid(form)
 
 
@@ -174,11 +179,11 @@ class ProfileUpdate(LoginRequiredMixin, UpdateView):
 class WorkOrderCreate(LoginRequiredMixin, CreateView):
     model = WorkOrder
     fields = ['title', 'description']
-
     def form_valid(self, form):
         form.instance.user = self.request.user
 
         return super().form_valid(form)
+
 
 @login_required
 def workorder_status(request, work_order_id):
@@ -190,7 +195,6 @@ def workorder_status(request, work_order_id):
         work_order.status = 'O'
         work_order.save()
     print(work_order.status)
-
     return redirect('work_order_details', work_order_id=work_order_id)
 
 
@@ -211,22 +215,21 @@ def signup(request):
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
 
+
 @login_required
 def add_photo(request, work_order_id):
-     # photo-file will be the "name" attribute on the <input type="file">
-
+    # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
         s3 = boto3.client('s3')
         # need a unique "key" for S3 / needs image file extension too
         key = uuid.uuid4().hex[:6] + \
-        photo_file.name[photo_file.name.rfind('.'):]
+            photo_file.name[photo_file.name.rfind('.'):]
         # just in case something goes wrong
         try:
             s3.upload_fileobj(photo_file, BUCKET, key)
             # build the full url string
             url = f"{S3_BASE_URL}{BUCKET}/{key}"
-            # we can assign to cat_id or cat (if you have a cat object)
             Photo.objects.create(url=url, work_order_id=work_order_id)
         except:
             print('An error occurred uploading file to S3')

@@ -1,42 +1,36 @@
-
-{% load static %} 
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>My Maintenance</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
-
-    
-
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>My Maintenance</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 
 <body class="container">
 
-<div class="signup-box">
-  <div >
-    
-<h4 class="login">Create a New Account</h4>
-{% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
+  <div class="signup-box">
+    <div>
 
-<div class="signup">
-  <form method="post" action="{% url 'signup' %}">
-    {% csrf_token %}
-    {{ form }} <br>
-      <input type="submit" class="btn btn-primary" value="Create Account">
-      <p class="signup-p" >Already have an account?  <a href="{% url 'login' %}"> Sign In</a>
-    </form>
-</div>
+      <h4 class="login">Create a New Account</h4>
+      {% if error_message %}<p class="red-text">{{ error_message }}</p>{% endif %}
+
+      <div class="signup">
+        <form method="post" action="{% url 'signup' %}">
+          {% csrf_token %}
+          {{ form }} <br>
+          <input type="submit" class="btn btn-primary" value="Create Account">
+          <p class="signup-p">Already have an account? <a href="{% url 'login' %}"> Sign In</a>
+        </form>
+      </div>
 
     </div><br>
-</div>
+  </div>
 
 </body>
 

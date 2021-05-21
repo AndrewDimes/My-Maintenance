@@ -5,108 +5,117 @@
 
 {% if request.user.is_superuser %}
 <div class="row">
-    <div class="col s4">
-        <h5>Quick Links</h5>
-        <a  style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="{% url 'maintenance' %}">View Work Orders</a><br>
-        <a  style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Messages</a><br>
-        <h5>My Account</h5>
-        <a  style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Schedule</a><br>
-        <a  style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Requests</a><br>
-        <a  style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Notices</a><br>
-    </div>
-    <div class="col s8">
-      
-        <h5><span>{{profile.full_name}}</span> - Maintenance Team</h5>
-        <div class="col s12 m7">
-            <h6 class="header"> Work Order Summary </h6>
-            <div style="width:150%;" class="card">
-              <div class="card-image">
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p >Submitted Work Orders  <span style="text-align:left" class="badge"> {{all_sub_work}}</span></p>
-                </div>
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p>Open Work Orders   <span style="text-align:left" class="badge"> {{all_open_work}}</span></p>
-                </div>
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p >Closed Work Orders   <span style="text-align:left" class="badge"> {{all_closed_work}}</span></p>
-                </div>
+  <div class="col s4">
+    <h5>Quick Links</h5>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="{% url 'maintenance' %}">View
+      Work Orders</a><br>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Messages</a><br>
+    <h5>My Account</h5>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Schedule</a><br>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Requests</a><br>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="">Notices</a><br>
+  </div>
+  <div class="col s8">
 
-              </div>
-            </div>
+    <h5><span>{{profile.full_name}}</span> - Maintenance Team</h5>
+    <div class="col s12 m7">
+      <h6 class="header"> Work Order Summary </h6>
+      <div style="width:150%;" class="card">
+        <div class="card-image">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Submitted Work Orders <span style="text-align:left" class="badge"> {{all_sub_work}}</span></p>
+          </div>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Open Work Orders <span style="text-align:left" class="badge"> {{all_open_work}}</span></p>
+          </div>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Closed Work Orders <span style="text-align:left" class="badge"> {{all_closed_work}}</span></p>
           </div>
 
-    </div>
-  </div>
-  <div style="text-align: center; margin-top:15%;" class="row">
-
-    <div class="col s4">
-      <a style="width:75%;" class="waves-effect waves-light btn-large"><i class="material-icons right">assessment</i>Charts</a>
-    </div>
-    <div class="col s4">
-      <a style="width:75%;" class="waves-effect waves-light btn-large"><i class="material-icons right">build</i>Work</a>
-    </div>
-    <div class="col s4">
-      <a style="width:75%;" class="waves-effect waves-light btn-large"><i class="material-icons right">supervisor_account</i>Team</a>
+        </div>
+      </div>
     </div>
 
   </div>
+</div>
+<div style="text-align: center; margin-top:20%;" class="row">
+
+  <div class="col s4">
+    <a style="width:75%;" class="waves-effect waves-light btn-large"><i
+        class="material-icons right">assessment</i>Charts</a>
+  </div>
+  <div class="col s4">
+    <a style="width:75%;" class="waves-effect waves-light btn-large"><i class="material-icons right">build</i>Work</a>
+  </div>
+  <div class="col s4">
+    <a style="width:75%;" class="waves-effect waves-light btn-large"><i
+        class="material-icons right">supervisor_account</i>Team</a>
+  </div>
+
+</div>
 {%else%}
 <div class="row">
-    <div class="col s4">
-        <h5>Quick Links</h5>
-        <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="{% url 'maintenance' %}">View Work Orders</a><br>
-        <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="{% url 'workorder_create' %}">Submit Work Order</a><br>
-        <h5>My Account</h5>
-        <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="{% url 'profile_update' profile.id%}">Edit My Account</a><br>
-    </div>
-    <div class="col s8">
-      
-        <h5>Hello, <span >{{profile.full_name}}</span></h5>
-        <div class="col s12 m7">
-            <h6 class="header"> Apt: {{profile.apartment}} </h6>
-            <div style="width:150%;" class="card">
-              <div class="card-image">
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p  >Submitted Work Orders   <span style="text-align:left" class="badge"> {{sub_work}}</span></p>
-                </div>
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p>Open Work Orders         <span style="text-align:left" class="badge"> {{open_work}}</span></p>
-                </div>
-              </div>
-              <div class="card-stacked">
-                <div class="card-content">
-                  <p >Closed Work Orders    <span style="text-align:left" class="badge"> {{closed_work}}</span></p>
-                </div>
+  <div class="col s4">
+    <h5>Quick Links</h5>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat" href="{% url 'maintenance' %}">View
+      Work Orders</a><br>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat"
+      href="{% url 'workorder_create' %}">Submit Work Order</a><br>
+    <h5>My Account</h5>
+    <a style="margin-left:-5%; color:teal;" class="waves-effect waves-teal btn-flat"
+      href="{% url 'profile_update' profile.id%}">Edit My Account</a><br>
+  </div>
+  <div class="col s8">
 
-              </div>
-            </div>
+    <h5>Hello, <span>{{profile.full_name}}</span></h5>
+    <div class="col s12 m7">
+      <h6 class="header"> Apt: {{profile.apartment}} </h6>
+      <div style="width:150%;" class="card">
+        <div class="card-image">
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Submitted Work Orders <span style="text-align:left" class="badge"> {{sub_work}}</span></p>
           </div>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Open Work Orders <span style="text-align:left" class="badge"> {{open_work}}</span></p>
+          </div>
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>Closed Work Orders <span style="text-align:left" class="badge"> {{closed_work}}</span></p>
+          </div>
+
+        </div>
+      </div>
     </div>
   </div>
-  <div style="text-align: center; margin-top:15%;" class="row">
+</div>
+<div style="text-align: center; margin-top:20%;" class="row">
 
-    <div class="col s4">
-      <a style="width:75%;" class="waves-effect waves-light btn-large"><i class="material-icons right">email</i>Contact</a>
-    </div>
-    <div class="col s4">
-      <a style="width:75%;" class="waves-effect waves-light btn-large"><i class="material-icons right">live_help</i>Help</a>
-    </div>
-    <div class="col s4">
-      <a style="width:75%;" class="waves-effect waves-light btn-large"><i class="material-icons right">account_circle</i>Profile</a>
-    </div>
-
+  <div class="col s4">
+    <a style="width:75%;" class="waves-effect waves-light btn-large"><i
+        class="material-icons right">email</i>Contact</a>
   </div>
-  {%endif%}
+  <div class="col s4">
+    <a style="width:75%;" class="waves-effect waves-light btn-large"><i
+        class="material-icons right">live_help</i>Help</a>
+  </div>
+  <div class="col s4">
+    <a style="width:75%;" class="waves-effect waves-light btn-large"><i
+        class="material-icons right">account_circle</i>Profile</a>
+  </div>
+
+</div>
+{%endif%}
 
 
 

@@ -8,101 +8,104 @@
 <br>
 <div style="text-align: center;">
   <a id="main-btn" href="{%url 'maintenance' %}" class="waves-effect waves-light btn">Submitted</a>
-  <a id="main-btn" href="{%url 'open_maintenance' %}"  class="waves-effect waves-light btn">Open</a>
-  <a id="main-btn" href="{%url 'closed_maintenance' %}"  class="waves-effect waves-light btn">Closed</a>
+  <a id="main-btn" href="{%url 'open_maintenance' %}" class="waves-effect waves-light btn">Open</a>
+  <a id="main-btn" href="{%url 'closed_maintenance' %}" class="waves-effect waves-light btn">Closed</a>
 </div>
- 
+
 
 
 <table>
   <thead>
     <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
     </tr>
   </thead>
 
   <tbody>
-  {% for work in work %}
-   <tr> 
-    <td><a class="waves-effect waves-teal btn-flat" href="{%url 'work_order_details' work.id %}"><u>{{work.title}}</u></a></td> 
-    <td>{{work.description}}</td>
-    <td>{{work.get_status_display}}</td>
- </tr>
+    {% for work in work %}
+    <tr>
+      <td><a class="waves-effect waves-teal btn-flat"
+          href="{%url 'work_order_details' work.id %}"><u>{{work.title}}</u></a></td>
+      <td>{{work.description}}</td>
+      <td>{{work.get_status_display}}</td>
+    </tr>
     {% endfor %}
   </tbody>
 </table>
 {% if work.has_other_pages %}
-  <ul class="pagination">
-    {% if users.has_previous %}
-      <li><a href="?page={{ work.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in work.paginator.page_range %}
-      {% if work.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only"></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if users.has_next %}
-      <li><a href="?page={{ work.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
+<ul class="pagination">
+  {% if users.has_previous %}
+  <li><a href="?page={{ work.previous_page_number }}">&laquo;</a></li>
+  {% else %}
+  <li class="disabled"><span>&laquo;</span></li>
+  {% endif %}
+  {% for i in work.paginator.page_range %}
+  {% if work.number == i %}
+  <li class="active"><span>{{ i }} <span class="sr-only"></li>
+  {% else %}
+  <li><a href="?page={{ i }}">{{ i }}</a></li>
+  {% endif %}
+  {% endfor %}
+  {% if users.has_next %}
+  <li><a href="?page={{ work.next_page_number }}">&raquo;</a></li>
+  {% else %}
+  <li class="disabled"><span>&raquo;</span></li>
+  {% endif %}
+</ul>
 {% endif %}
-      
+
 {%else%}
-<a id="work-btn" href="{% url 'workorder_create' %} "class="waves-effect waves-light btn-large"><i class="material-icons right">build</i>Submit Work Order</a>
+<a id="work-btn" href="{% url 'workorder_create' %} " class="waves-effect waves-light btn-large"><i
+    class="material-icons right">build</i>Submit Work Order</a>
 <br>
 <br>
 <div style="text-align: center;">
   <a id="main-btn" href="{%url 'maintenance' %}" class="waves-effect waves-light btn">Submitted</a>
-  <a id="main-btn" href="{%url 'open_maintenance' %}"  class="waves-effect waves-light btn">Open</a>
-  <a id="main-btn" href="{%url 'closed_maintenance' %}"  class="waves-effect waves-light btn">Closed</a>
+  <a id="main-btn" href="{%url 'open_maintenance' %}" class="waves-effect waves-light btn">Open</a>
+  <a id="main-btn" href="{%url 'closed_maintenance' %}" class="waves-effect waves-light btn">Closed</a>
 </div>
 <table>
   <thead>
     <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Status</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Status</th>
     </tr>
   </thead>
 
   <tbody>
-  {% for work in work_resident %}
-   <tr> 
-    <td><a class="waves-effect waves-teal btn-flat" href="{%url 'work_order_details' work.id %}"><u>{{work.title}}</u></a></td> 
-    <td>{{work.description}}</td>
-    <td>{{work.get_status_display}}</td>
- </tr>
+    {% for work in work_resident %}
+    <tr>
+      <td><a class="waves-effect waves-teal btn-flat"
+          href="{%url 'work_order_details' work.id %}"><u>{{work.title}}</u></a></td>
+      <td>{{work.description}}</td>
+      <td>{{work.get_status_display}}</td>
+    </tr>
     {% endfor %}
   </tbody>
 </table>
 {% if work_resident.has_other_pages %}
-  <ul class="pagination">
-    {% if users.has_previous %}
-      <li><a href="?page={{ work_resident.previous_page_number }}">&laquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&laquo;</span></li>
-    {% endif %}
-    {% for i in work_resident.paginator.page_range %}
-      {% if work_resident.number == i %}
-        <li class="active"><span>{{ i }} <span class="sr-only"></li>
-      {% else %}
-        <li><a href="?page={{ i }}">{{ i }}</a></li>
-      {% endif %}
-    {% endfor %}
-    {% if users.has_next %}
-      <li><a href="?page={{ work_resident.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><span>&raquo;</span></li>
-    {% endif %}
-  </ul>
+<ul class="pagination">
+  {% if users.has_previous %}
+  <li><a href="?page={{ work_resident.previous_page_number }}">&laquo;</a></li>
+  {% else %}
+  <li class="disabled"><span>&laquo;</span></li>
+  {% endif %}
+  {% for i in work_resident.paginator.page_range %}
+  {% if work_resident.number == i %}
+  <li class="active"><span>{{ i }} <span class="sr-only"></li>
+  {% else %}
+  <li><a href="?page={{ i }}">{{ i }}</a></li>
+  {% endif %}
+  {% endfor %}
+  {% if users.has_next %}
+  <li><a href="?page={{ work_resident.next_page_number }}">&raquo;</a></li>
+  {% else %}
+  <li class="disabled"><span>&raquo;</span></li>
+  {% endif %}
+</ul>
 {% endif %}
 {%endif%}
 
